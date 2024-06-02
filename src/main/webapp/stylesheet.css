@@ -1,0 +1,63 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+body {
+    font-family: "Courier New", monospace;
+    color: #020002;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid #565678;
+    letter-spacing: 1px;
+    width: 50%;
+}
+
+caption {
+    padding: 10px;
+    font-weight: bold;
+}
+
+thead {
+    background-color: #83C5BE;
+}
+
+th,
+td {
+    border: 1px solid #006D77;
+    padding: 8px 10px;
+}
+
+
+tbody > tr:nth-of-type(even) {
+    background-color: #EDF6F9;
+}
