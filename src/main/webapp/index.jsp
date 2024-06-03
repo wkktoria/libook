@@ -11,7 +11,8 @@
         <h1>MyBooks</h1>
     </header>
     <main>
-        <p>Check <a href="${pageContext.request.contextPath}/books">list of books</a>.</p>
+        <p>Check <a href="${pageContext.request.contextPath}/books">list of books</a> or <a
+                href="addBookForm.jsp">add a book</a>.</p>
     </main>
 </div>
 </body>

@@ -49,6 +49,23 @@ a:active {
     background-color: #006D77;
 }
 
+.btn {
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.95;
+}
+
+.add-btn {
+    color: #fff;
+    background-color: #006D77;
+    margin: 10px 0 20px 0;
+}
+
 table {
     border-collapse: collapse;
     border: 2px solid #565678;

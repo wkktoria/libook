@@ -10,6 +10,7 @@
     <header>
         <h1>MyBooks</h1>
     </header>
+    <button class="btn add-btn" onclick="window.location.href='addBookForm.jsp';return false;">Add book</button>
     <table>
         <caption>List of books</caption>
         <thead>

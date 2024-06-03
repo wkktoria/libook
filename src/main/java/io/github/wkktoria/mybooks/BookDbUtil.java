@@ -1,10 +1,7 @@
 package io.github.wkktoria.mybooks;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +37,24 @@ class BookDbUtil {
             return books;
         } finally {
             close(connection, statement, resultSet);
+        }
+    }
+
+    void addBook(Book book) throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = dataSource.getConnection();
+
+            String sql = "insert into Books(title, author) values(?, ?)";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+
+            statement.execute();
+        } finally {
+            close(connection, statement, null);
         }
     }
 

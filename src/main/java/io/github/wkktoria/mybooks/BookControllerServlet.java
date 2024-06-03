@@ -28,7 +28,17 @@ public class BookControllerServlet extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         try {
-            listBooks(req, resp);
+            String command = req.getParameter("command");
+
+            if (command == null) {
+                command = "list";
+            }
+
+            if (command.equals("add")) {
+                addBook(req, resp);
+            } else {
+                listBooks(req, resp);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -40,5 +50,14 @@ public class BookControllerServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/listBooks.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    private void addBook(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        String title = req.getParameter("title");
+        String author = req.getParameter("author");
+
+        bookDbUtil.addBook(new Book(title, author));
+
+        listBooks(req, resp);
     }
 }
