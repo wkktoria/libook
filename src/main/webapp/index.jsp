@@ -3,8 +3,16 @@
 <html>
 <head>
     <title>My Books</title>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-<h1>My Books</h1>
+<div class="container">
+    <header>
+        <h1>MyBooks</h1>
+    </header>
+    <main>
+        <p>Check <a href="${pageContext.request.contextPath}/books">list of books</a>.</p>
+    </main>
+</div>
 </body>
 </html>
