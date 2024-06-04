@@ -78,6 +78,14 @@ a:active {
     background-color: #DC3545;
 }
 
+.search-btn {
+    color: #FFF;
+    background-color: #5A6268;
+    width: 25%;
+    align-self: center;
+    margin: 10px 0;
+}
+
 .form-btn {
     width: 25%;
     align-self: center;

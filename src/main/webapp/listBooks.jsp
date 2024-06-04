@@ -12,6 +12,14 @@
         <h1>MyBooks</h1>
     </header>
     <button class="btn add-btn" onclick="window.location.href='addBookForm.jsp'">Add book</button>
+    <form action="${pageContext.request.contextPath}/books" method="get">
+        <input type="hidden" name="command" value="search">
+
+        <label for="search">Search book:</label>
+        <input id="search" type="text" name="searchValue" placeholder="Enter a title or an author..."/>
+
+        <button class="btn search-btn" type="submit">Search</button>
+    </form>
     <table>
         <caption>List of books</caption>
         <thead>

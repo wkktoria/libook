@@ -44,6 +44,9 @@ public class BookControllerServlet extends HttpServlet {
                 case "delete":
                     deleteBook(req, resp);
                     break;
+                case "search":
+                    searchBooks(req, resp);
+                    break;
                 case "list":
                 default:
                     listBooks(req, resp);
@@ -113,5 +116,15 @@ public class BookControllerServlet extends HttpServlet {
         bookDbUtil.deleteBook(bookId);
 
         listBooks(req, resp);
+    }
+
+    private void searchBooks(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        String searchValue = req.getParameter("searchValue");
+        List<Book> books = bookDbUtil.searchBooks(searchValue);
+
+        req.setAttribute("books", books);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/listBooks.jsp");
+        dispatcher.forward(req, resp);
     }
 }

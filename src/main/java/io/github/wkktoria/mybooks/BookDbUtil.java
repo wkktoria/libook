@@ -128,6 +128,42 @@ class BookDbUtil {
         }
     }
 
+    List<Book> searchBooks(String searchValue) throws SQLException {
+        List<Book> books = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int bookId;
+
+        if (searchValue == null || searchValue.isEmpty()) {
+            return getBooks();
+        }
+
+        try {
+            connection = dataSource.getConnection();
+
+            String sql = "select * from Books where lower(title) like ? or lower(author) like ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + searchValue.toLowerCase() + "%");
+            statement.setString(2, "%" + searchValue.toLowerCase() + "%");
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+
+                books.add(new Book(id, title, author));
+            }
+
+            return books;
+        } finally {
+            close(connection, statement, resultSet);
+        }
+    }
+
     private void close(Connection connection, Statement statement, ResultSet resultSet) {
         try {
             if (resultSet != null) {
