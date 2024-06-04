@@ -60,10 +60,16 @@ a:active {
     opacity: 0.95;
 }
 
-.add-btn {
-    color: #fff;
+.add-btn, .save-btn {
+    color: #FFF;
     background-color: #006D77;
     margin: 10px 0 20px 0;
+}
+
+.update-btn {
+    color: #FFF;
+    background-color: #E0A800;
+    margin: 6px 2px;
 }
 
 table {

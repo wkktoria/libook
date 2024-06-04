@@ -40,6 +40,37 @@ class BookDbUtil {
         }
     }
 
+    Book getBook(String id) throws SQLException {
+        Book book = null;
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int bookId;
+
+        try {
+            bookId = Integer.parseInt(id);
+
+            connection = dataSource.getConnection();
+
+            String sql = "select * from Books where id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, bookId);
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                book = new Book(bookId, resultSet.getString("title"), resultSet.getString("author"));
+            } else {
+                throw new SQLException("Book not found");
+            }
+
+            return book;
+        } finally {
+            close(connection, statement, resultSet);
+        }
+    }
+
     void addBook(Book book) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -51,6 +82,25 @@ class BookDbUtil {
             statement = connection.prepareStatement(sql);
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
+
+            statement.execute();
+        } finally {
+            close(connection, statement, null);
+        }
+    }
+
+    void updateBook(Book book) throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = dataSource.getConnection();
+
+            String sql = "update Books set title = ?, author = ? where id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+            statement.setInt(3, book.getId());
 
             statement.execute();
         } finally {

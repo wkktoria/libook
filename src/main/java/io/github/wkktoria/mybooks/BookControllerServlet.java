@@ -34,10 +34,20 @@ public class BookControllerServlet extends HttpServlet {
                 command = "list";
             }
 
-            if (command.equals("add")) {
-                addBook(req, resp);
-            } else {
-                listBooks(req, resp);
+            switch (command) {
+                case "add":
+                    addBook(req, resp);
+                    break;
+                case "load":
+                    loadBook(req, resp);
+                    break;
+                case "update":
+                    updateBook(req, resp);
+                    break;
+                case "list":
+                default:
+                    listBooks(req, resp);
+                    break;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -57,6 +67,27 @@ public class BookControllerServlet extends HttpServlet {
         String author = req.getParameter("author");
 
         bookDbUtil.addBook(new Book(title, author));
+
+        listBooks(req, resp);
+    }
+
+    private void loadBook(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        String bookId = req.getParameter("bookId");
+        Book book = bookDbUtil.getBook(bookId);
+
+        req.setAttribute("book", book);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/updateBookForm.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void updateBook(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        int bookId = Integer.parseInt(req.getParameter("bookId"));
+        String title = req.getParameter("title");
+        String author = req.getParameter("author");
+
+        Book book = new Book(bookId, title, author);
+        bookDbUtil.updateBook(book);
 
         listBooks(req, resp);
     }
