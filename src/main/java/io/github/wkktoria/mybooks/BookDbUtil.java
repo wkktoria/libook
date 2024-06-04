@@ -108,6 +108,26 @@ class BookDbUtil {
         }
     }
 
+    void deleteBook(String id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int bookId;
+
+        try {
+            bookId = Integer.parseInt(id);
+
+            connection = dataSource.getConnection();
+
+            String sql = "delete from Books where id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, bookId);
+
+            statement.execute();
+        } finally {
+            close(connection, statement, null);
+        }
+    }
+
     private void close(Connection connection, Statement statement, ResultSet resultSet) {
         try {
             if (resultSet != null) {

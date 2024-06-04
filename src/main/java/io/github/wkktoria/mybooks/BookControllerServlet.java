@@ -44,6 +44,9 @@ public class BookControllerServlet extends HttpServlet {
                 case "update":
                     updateBook(req, resp);
                     break;
+                case "delete":
+                    deleteBook(req, resp);
+                    break;
                 case "list":
                 default:
                     listBooks(req, resp);
@@ -88,6 +91,14 @@ public class BookControllerServlet extends HttpServlet {
 
         Book book = new Book(bookId, title, author);
         bookDbUtil.updateBook(book);
+
+        listBooks(req, resp);
+    }
+
+    private void deleteBook(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        String bookId = req.getParameter("bookId");
+
+        bookDbUtil.deleteBook(bookId);
 
         listBooks(req, resp);
     }

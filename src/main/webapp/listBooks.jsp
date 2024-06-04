@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>MyBooks - List of Books</title>
     <link type="text/css" rel="stylesheet" href="stylesheet.css">
 </head>
@@ -26,17 +27,28 @@
                 <c:param name="command" value="load"/>
                 <c:param name="bookId" value="${book.id}"/>
             </c:url>
+            <c:url var="deleteLink" value="/books">
+                <c:param name="command" value="delete"/>
+                <c:param name="bookId" value="${book.id}"/>
+            </c:url>
 
             <tr>
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>
-                    <button class="btn update-btn" onclick="window.location.href='${bookLink}'">Update</button>
+                    <div class="action-buttons">
+                        <button class="btn update-btn" onclick="window.location.href='${bookLink}'">Update</button>
+                        <button class="btn delete-btn"
+                                onclick="if (confirm('Are you sure you want to delete this book?')) window.location.href='${deleteLink}'">
+                            Delete
+                        </button>
+                    </div>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    <p>Back to <a href="index.jsp">homepage</a>.</p>
 </div>
 </body>
 </html>

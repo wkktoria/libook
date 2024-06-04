@@ -24,9 +24,11 @@ body {
 }
 
 .container {
+    height: 100vh;
+    width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
 }
 
@@ -69,7 +71,19 @@ a:active {
 .update-btn {
     color: #FFF;
     background-color: #E0A800;
-    margin: 6px 2px;
+}
+
+.delete-btn {
+    color: #FFF;
+    background-color: #DC3545;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 table {
@@ -77,6 +91,7 @@ table {
     border: 2px solid #565678;
     letter-spacing: 1px;
     width: 50%;
+    margin-bottom: 15px;
 }
 
 caption {
@@ -97,4 +112,10 @@ td {
 
 tbody > tr:nth-of-type(even) {
     background-color: #EDF6F9;
+}
+
+@media only screen and (max-width: 600px) {
+    .action-buttons {
+        flex-direction: column;
+    }
 }
