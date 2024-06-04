@@ -20,7 +20,7 @@
         <label for="author">Enter an author:</label>
         <input id="author" name="author" type="text" value="${book.author}"/>
 
-        <button class="btn save-btn" type="submit">Save</button>
+        <button class="btn save-btn form-btn" type="submit">Save</button>
     </form>
     <p>Back to <a href="index.jsp">homepage</a>.</p>
 </div>

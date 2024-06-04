@@ -19,7 +19,7 @@
         <label for="author">Enter an author:</label>
         <input id="author" name="author" type="text"/>
 
-        <button class="btn add-btn" type="submit">Add</button>
+        <button class="btn add-btn form-btn" type="submit">Add</button>
     </form>
     <p>Back to <a href="index.jsp">homepage</a>.</p>
 </div>
