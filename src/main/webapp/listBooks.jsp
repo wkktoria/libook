@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>MyBooks - List of Books</title>
-    <link type="text/css" rel="stylesheet" href="stylesheet.css">
+    <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
 <div class="container">
