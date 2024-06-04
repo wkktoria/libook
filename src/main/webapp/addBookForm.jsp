@@ -14,10 +14,10 @@
         <input type="hidden" name="command" value="add"/>
 
         <label for="title">Enter a title:</label>
-        <input id="title" name="title" type="text"/>
+        <input id="title" name="title" type="text" required/>
 
         <label for="author">Enter an author:</label>
-        <input id="author" name="author" type="text"/>
+        <input id="author" name="author" type="text" required/>
 
         <button class="btn add-btn form-btn" type="submit">Add</button>
     </form>

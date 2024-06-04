@@ -15,10 +15,10 @@
         <input type="hidden" name="bookId" value="${book.id}"/>
 
         <label for="title">Enter a title:</label>
-        <input id="title" name="title" type="text" value="${book.title}"/>
+        <input id="title" name="title" type="text" value="${book.title}" required/>
 
         <label for="author">Enter an author:</label>
-        <input id="author" name="author" type="text" value="${book.author}"/>
+        <input id="author" name="author" type="text" value="${book.author}" required/>
 
         <button class="btn save-btn form-btn" type="submit">Save</button>
     </form>
