@@ -35,9 +35,6 @@ public class BookControllerServlet extends HttpServlet {
             }
 
             switch (command) {
-                case "add":
-                    addBook(req, resp);
-                    break;
                 case "load":
                     loadBook(req, resp);
                     break;
@@ -51,6 +48,21 @@ public class BookControllerServlet extends HttpServlet {
                 default:
                     listBooks(req, resp);
                     break;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String command = req.getParameter("command");
+
+            if (command.equals("add")) {
+                addBook(req, resp);
+            } else {
+                listBooks(req, resp);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -71,7 +83,7 @@ public class BookControllerServlet extends HttpServlet {
 
         bookDbUtil.addBook(new Book(title, author));
 
-        listBooks(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/books");
     }
 
     private void loadBook(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {

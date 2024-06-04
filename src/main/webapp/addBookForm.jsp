@@ -10,7 +10,7 @@
     <header>
         <h1>MyBooks</h1>
     </header>
-    <form action="${pageContext.request.contextPath}/books" method="get">
+    <form action="${pageContext.request.contextPath}/books" method="post">
         <input type="hidden" name="command" value="add"/>
 
         <label for="title">Enter a title:</label>
