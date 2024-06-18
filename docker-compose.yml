@@ -1,12 +1,22 @@
 services:
   mysql:
+    container_name: db
     build:
       context: .
-      dockerfile: Dockerfile
-      args:
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      dockerfile: ./docker/db/Dockerfile
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "3306:3306"
+  app:
+    container_name: mybooks
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    environment:
+      - CATALINA_OPTS=${CATALINA_OPTS}
+    ports:
+      - "8080:8080"
