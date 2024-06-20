@@ -45,8 +45,7 @@
             <tr>
                 <td>${book.title}</td>
                 <td>${book.author}</td>
-                <c:set var="status" value="${fn:toLowerCase(fn:join(fn:split(book.status, '_'), ' '))}"/>
-                <td>${status}</td>
+                <td>${book.status}</td>
                 <td>
                     <div class="action-buttons">
                         <button class="btn update-btn" onclick="window.location.href='${bookLink}'">Update</button>

@@ -30,9 +30,11 @@ class BookDbUtil {
                 int id = resultSet.getInt("id");
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
-                String status = resultSet.getString("status");
+                int statusId = resultSet.getInt("status_id");
 
-                books.add(new Book(id, title, author, Book.getStatusFromString(status)));
+                Status status = new StatusDbUtil(dataSource).getStatus(statusId);
+
+                books.add(new Book(id, title, author, status));
             }
 
             return books;
@@ -54,7 +56,7 @@ class BookDbUtil {
 
             connection = dataSource.getConnection();
 
-            String sql = "select * from Books where id = ?";
+            String sql = "select * from Books join Status on Books.status_id = Status.id where Books.id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, bookId);
 
@@ -63,7 +65,7 @@ class BookDbUtil {
             if (resultSet.next()) {
                 book = new Book(bookId, resultSet.getString("title"),
                         resultSet.getString("author"),
-                        Book.getStatusFromString(resultSet.getString("status")));
+                        new Status(resultSet.getInt("status_id"), resultSet.getString("description")));
             } else {
                 throw new SQLException("Book not found");
             }
@@ -81,11 +83,11 @@ class BookDbUtil {
         try {
             connection = dataSource.getConnection();
 
-            String sql = "insert into Books(title, author, status) values(?, ?, ?)";
+            String sql = "insert into Books(title, author, status_id) values(?, ?, ?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
-            statement.setString(3, Book.getStringFromStatus(book.getStatus()));
+            statement.setInt(3, book.getStatus().getId());
 
             statement.execute();
         } finally {
@@ -100,11 +102,11 @@ class BookDbUtil {
         try {
             connection = dataSource.getConnection();
 
-            String sql = "update Books set title = ?, author = ?, status = ? where id = ?";
+            String sql = "update Books set title = ?, author = ?, status_id = ? where id = ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
-            statement.setString(3, Book.getStringFromStatus(book.getStatus()));
+            statement.setInt(3, book.getStatus().getId());
             statement.setInt(4, book.getId());
 
             statement.execute();
@@ -158,9 +160,11 @@ class BookDbUtil {
                 int id = resultSet.getInt("id");
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
-                String status = resultSet.getString("status");
+                int statusId = resultSet.getInt("status_id");
 
-                books.add(new Book(id, title, author, Book.getStatusFromString(status)));
+                Status status = new StatusDbUtil(dataSource).getStatus(statusId);
+
+                books.add(new Book(id, title, author, status));
             }
 
             return books;

@@ -15,6 +15,7 @@ import java.util.List;
 @WebServlet(name = "bookControllerServlet", value = "/books")
 public class BookControllerServlet extends HttpServlet {
     private BookDbUtil bookDbUtil;
+    private StatusDbUtil statusDbUtil;
     @Resource(name = "jdbc/mybooks")
     private DataSource dataSource;
 
@@ -23,6 +24,7 @@ public class BookControllerServlet extends HttpServlet {
         super.init();
 
         bookDbUtil = new BookDbUtil(dataSource);
+        statusDbUtil = new StatusDbUtil(dataSource);
     }
 
     @Override
@@ -83,9 +85,9 @@ public class BookControllerServlet extends HttpServlet {
     private void addBook(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, SQLException {
         String title = req.getParameter("title");
         String author = req.getParameter("author");
-        String status = req.getParameter("status");
+        Status status = new StatusDbUtil(dataSource).getStatus(Integer.parseInt(req.getParameter("statusId")));
 
-        bookDbUtil.addBook(new Book(title, author, Book.getStatusFromString(status)));
+        bookDbUtil.addBook(new Book(title, author, status));
 
         resp.sendRedirect(req.getContextPath() + "/books");
     }
@@ -104,9 +106,10 @@ public class BookControllerServlet extends HttpServlet {
         int bookId = Integer.parseInt(req.getParameter("bookId"));
         String title = req.getParameter("title");
         String author = req.getParameter("author");
-        String status = req.getParameter("status");
+        Status status = new StatusDbUtil(dataSource).getStatus(Integer.parseInt(req.getParameter("statusId")));
 
-        Book book = new Book(bookId, title, author, Book.getStatusFromString(status));
+
+        Book book = new Book(bookId, title, author, status);
         bookDbUtil.updateBook(book);
 
         listBooks(req, resp);

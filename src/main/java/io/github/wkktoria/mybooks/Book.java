@@ -19,32 +19,6 @@ public class Book {
         this.status = status;
     }
 
-    public static Status getStatusFromString(final String status) {
-        switch (status) {
-            case "plan to read":
-                return Book.Status.PLAN_TO_READ;
-            case "currently reading":
-                return Book.Status.CURRENTLY_READING;
-            case "completed":
-                return Book.Status.COMPLETED;
-            default:
-                return null;
-        }
-    }
-
-    public static String getStringFromStatus(final Status status) {
-        switch (status) {
-            case PLAN_TO_READ:
-                return "plan to read";
-            case CURRENTLY_READING:
-                return "currently reading";
-            case COMPLETED:
-                return "completed";
-            default:
-                return null;
-        }
-    }
-
     public int getId() {
         return id;
     }
@@ -85,11 +59,5 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", status=" + status +
                 '}';
-    }
-
-    public enum Status {
-        PLAN_TO_READ,
-        CURRENTLY_READING,
-        COMPLETED
     }
 }

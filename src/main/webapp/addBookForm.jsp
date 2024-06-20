@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,10 +21,10 @@
         <input id="author" name="author" type="text" required/>
 
         <label for="status">Choose a status:</label>
-        <select name="status" id="status">
-            <option value="plan to read">plan to read</option>
-            <option value="currently reading">currently reading</option>
-            <option value="completed">completed</option>
+        <select name="statusId" id="status">
+            <option value="1">plan to read</option>
+            <option value="2">currently reading</option>
+            <option value="3">completed</option>
         </select>
 
         <button class="btn add-btn form-btn" type="submit">Add</button>
