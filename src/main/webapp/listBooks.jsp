@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -26,6 +27,7 @@
         <tr>
             <th>Title</th>
             <th>Author</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -43,6 +45,8 @@
             <tr>
                 <td>${book.title}</td>
                 <td>${book.author}</td>
+                <c:set var="status" value="${fn:toLowerCase(fn:join(fn:split(book.status, '_'), ' '))}"/>
+                <td>${status}</td>
                 <td>
                     <div class="action-buttons">
                         <button class="btn update-btn" onclick="window.location.href='${bookLink}'">Update</button>

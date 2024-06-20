@@ -80,11 +80,12 @@ public class BookControllerServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void addBook(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, SQLException {
+    private void addBook(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, SQLException {
         String title = req.getParameter("title");
         String author = req.getParameter("author");
+        String status = req.getParameter("status");
 
-        bookDbUtil.addBook(new Book(title, author));
+        bookDbUtil.addBook(new Book(title, author, Book.getStatusFromString(status)));
 
         resp.sendRedirect(req.getContextPath() + "/books");
     }
@@ -103,8 +104,9 @@ public class BookControllerServlet extends HttpServlet {
         int bookId = Integer.parseInt(req.getParameter("bookId"));
         String title = req.getParameter("title");
         String author = req.getParameter("author");
+        String status = req.getParameter("status");
 
-        Book book = new Book(bookId, title, author);
+        Book book = new Book(bookId, title, author, Book.getStatusFromString(status));
         bookDbUtil.updateBook(book);
 
         listBooks(req, resp);

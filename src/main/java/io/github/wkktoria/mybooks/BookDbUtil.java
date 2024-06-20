@@ -30,8 +30,9 @@ class BookDbUtil {
                 int id = resultSet.getInt("id");
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
+                String status = resultSet.getString("status");
 
-                books.add(new Book(id, title, author));
+                books.add(new Book(id, title, author, Book.getStatusFromString(status)));
             }
 
             return books;
@@ -41,7 +42,7 @@ class BookDbUtil {
     }
 
     Book getBook(String id) throws SQLException {
-        Book book = null;
+        Book book;
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -60,7 +61,9 @@ class BookDbUtil {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                book = new Book(bookId, resultSet.getString("title"), resultSet.getString("author"));
+                book = new Book(bookId, resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        Book.getStatusFromString(resultSet.getString("status")));
             } else {
                 throw new SQLException("Book not found");
             }
@@ -78,10 +81,11 @@ class BookDbUtil {
         try {
             connection = dataSource.getConnection();
 
-            String sql = "insert into Books(title, author) values(?, ?)";
+            String sql = "insert into Books(title, author, status) values(?, ?, ?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
+            statement.setString(3, Book.getStringFromStatus(book.getStatus()));
 
             statement.execute();
         } finally {
@@ -96,11 +100,12 @@ class BookDbUtil {
         try {
             connection = dataSource.getConnection();
 
-            String sql = "update Books set title = ?, author = ? where id = ?";
+            String sql = "update Books set title = ?, author = ?, status = ? where id = ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
-            statement.setInt(3, book.getId());
+            statement.setString(3, Book.getStringFromStatus(book.getStatus()));
+            statement.setInt(4, book.getId());
 
             statement.execute();
         } finally {
@@ -134,7 +139,6 @@ class BookDbUtil {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        int bookId;
 
         if (searchValue == null || searchValue.isEmpty()) {
             return getBooks();
@@ -154,8 +158,9 @@ class BookDbUtil {
                 int id = resultSet.getInt("id");
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
+                String status = resultSet.getString("status");
 
-                books.add(new Book(id, title, author));
+                books.add(new Book(id, title, author, Book.getStatusFromString(status)));
             }
 
             return books;

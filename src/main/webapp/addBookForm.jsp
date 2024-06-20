@@ -19,6 +19,13 @@
         <label for="author">Enter an author:</label>
         <input id="author" name="author" type="text" required/>
 
+        <label for="status">Choose a status:</label>
+        <select name="status" id="status">
+            <option value="plan to read">plan to read</option>
+            <option value="currently reading">currently reading</option>
+            <option value="completed">completed</option>
+        </select>
+
         <button class="btn add-btn form-btn" type="submit">Add</button>
     </form>
     <p>Back to <a href="index.jsp">homepage</a>.</p>
