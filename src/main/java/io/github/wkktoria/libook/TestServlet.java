@@ -1,4 +1,4 @@
-package io.github.wkktoria.mybooks;
+package io.github.wkktoria.libook;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 @WebServlet(name = "testServlet", value = "/test")
 public class TestServlet extends HttpServlet {
-    @Resource(name = "jdbc/mybooks")
+    @Resource(name = "jdbc/libook")
     private DataSource dataSource;
 
     @Override

@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MyBooks - Update Book</title>
+    <title>Libook - Update Book</title>
     <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <h1>MyBooks</h1>
+        <h1>Libook</h1>
     </header>
     <form action="${pageContext.request.contextPath}/books" method="get">
         <input type="hidden" name="command" value="update"/>

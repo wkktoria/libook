@@ -1,4 +1,4 @@
-package io.github.wkktoria.mybooks;
+package io.github.wkktoria.libook;
 
 public class Status {
     private int id;

@@ -3,13 +3,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MyBooks - Add Book</title>
+    <title>Libook - Add Book</title>
     <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <h1>MyBooks</h1>
+        <h1>Libook</h1>
     </header>
     <form action="${pageContext.request.contextPath}/books" method="post">
         <input type="hidden" name="command" value="add"/>

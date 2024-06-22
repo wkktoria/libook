@@ -12,7 +12,7 @@ services:
     ports:
       - "3306:3306"
   app:
-    container_name: mybooks
+    container_name: libook
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile

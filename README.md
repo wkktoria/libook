@@ -1,4 +1,4 @@
-# MyBooks
+# libook
 
 ![Demo of application](demo.gif)
 

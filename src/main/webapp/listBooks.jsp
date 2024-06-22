@@ -4,13 +4,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MyBooks - List of Books</title>
+    <title>Libook - List of Books</title>
     <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <h1>MyBooks</h1>
+        <h1>Libook</h1>
     </header>
     <button class="btn add-btn" onclick="window.location.href='addBookForm.jsp'">Add book</button>
     <form action="${pageContext.request.contextPath}/books" method="get">

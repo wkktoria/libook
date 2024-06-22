@@ -1,5 +1,5 @@
 <Context>
-    <Resource name="jdbc/mybooks" auth="Container" type="javax.sql.DataSource"
+    <Resource name="jdbc/libook" auth="Container" type="javax.sql.DataSource"
               maxActive="20" maxIdle="5" maxWait="1000" username="${MYSQL_USER}" password="${MYSQL_PASSWORD}"
               driverClassName="com.mysql.cj.jdbc.Driver"
               url="jdbc:mysql://db:3306/${MYSQL_DATABASE}?allowPublicKeyRetrieval=true&amp;useSSL=false"/>

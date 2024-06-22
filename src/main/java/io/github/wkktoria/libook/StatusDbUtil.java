@@ -1,4 +1,4 @@
-package io.github.wkktoria.mybooks;
+package io.github.wkktoria.libook;
 
 import javax.sql.DataSource;
 import java.sql.*;

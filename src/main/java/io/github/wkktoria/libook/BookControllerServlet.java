@@ -1,4 +1,4 @@
-package io.github.wkktoria.mybooks;
+package io.github.wkktoria.libook;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -15,8 +15,7 @@ import java.util.List;
 @WebServlet(name = "bookControllerServlet", value = "/books")
 public class BookControllerServlet extends HttpServlet {
     private BookDbUtil bookDbUtil;
-    private StatusDbUtil statusDbUtil;
-    @Resource(name = "jdbc/mybooks")
+    @Resource(name = "jdbc/libook")
     private DataSource dataSource;
 
     @Override
@@ -24,7 +23,6 @@ public class BookControllerServlet extends HttpServlet {
         super.init();
 
         bookDbUtil = new BookDbUtil(dataSource);
-        statusDbUtil = new StatusDbUtil(dataSource);
     }
 
     @Override
