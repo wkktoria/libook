@@ -1,4 +1,4 @@
-FROM maven:3-jdk-8 AS build
+FROM maven:3-openjdk-11 AS build
 
 COPY src /usr/src/app/src
 COPY pom.xml /usr/src/app
@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 
 RUN mvn clean package
 
-FROM tomcat:9-jdk8
+FROM tomcat:10-jdk11
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
