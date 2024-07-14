@@ -6,8 +6,9 @@
 
     <groupId>io.github.wkktoria</groupId>
     <artifactId>libook</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>libook</name>
+    <version>1.0.0</version>
+    <name>Libook</name>
+    <description>Manage your books easily</description>
     <packaging>war</packaging>
 
     <properties>
