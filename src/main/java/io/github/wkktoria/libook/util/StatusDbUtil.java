@@ -1,16 +1,19 @@
 package io.github.wkktoria.libook;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-class StatusDbUtil {
+public class StatusDbUtil {
     private final DataSource dataSource;
 
     public StatusDbUtil(final DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    Status getStatus(int id) throws SQLException {
+    public Status getStatus(int id) throws SQLException {
         Status status;
 
         Connection connection = null;
@@ -35,24 +38,6 @@ class StatusDbUtil {
             return status;
         } finally {
             close(connection, statement, resultSet);
-        }
-    }
-
-    private void close(Connection connection, Statement statement, ResultSet resultSet) {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-
-            if (statement != null) {
-                statement.close();
-            }
-
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
     }
 }

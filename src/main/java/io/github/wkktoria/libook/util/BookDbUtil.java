@@ -8,11 +8,11 @@ import java.util.List;
 class BookDbUtil {
     private final DataSource dataSource;
 
-    BookDbUtil(final DataSource dataSource) {
+    public BookDbUtil(final DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    List<Book> getBooks() throws SQLException {
+    public List<Book> getBooks() throws SQLException {
         List<Book> books = new ArrayList<>();
 
         Connection connection = null;
@@ -43,7 +43,7 @@ class BookDbUtil {
         }
     }
 
-    Book getBook(String id) throws SQLException {
+    public Book getBook(String id) throws SQLException {
         Book book;
 
         Connection connection = null;
@@ -76,7 +76,7 @@ class BookDbUtil {
         }
     }
 
-    void addBook(Book book) throws SQLException {
+    public void addBook(Book book) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -95,7 +95,7 @@ class BookDbUtil {
         }
     }
 
-    void updateBook(Book book) throws SQLException {
+    public void updateBook(Book book) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -115,7 +115,7 @@ class BookDbUtil {
         }
     }
 
-    void deleteBook(String id) throws SQLException {
+    public void deleteBook(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
         int bookId;
@@ -135,7 +135,7 @@ class BookDbUtil {
         }
     }
 
-    List<Book> searchBooks(String searchValue) throws SQLException {
+    public List<Book> searchBooks(String searchValue) throws SQLException {
         List<Book> books = new ArrayList<>();
 
         Connection connection = null;
@@ -170,24 +170,6 @@ class BookDbUtil {
             return books;
         } finally {
             close(connection, statement, resultSet);
-        }
-    }
-
-    private void close(Connection connection, Statement statement, ResultSet resultSet) {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-
-            if (statement != null) {
-                statement.close();
-            }
-
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
     }
 }
