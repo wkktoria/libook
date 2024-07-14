@@ -1,14 +1,20 @@
-# libook
+# Libook
 
-![Demo of application](demo.gif)
+![Demo of application](demo.png)
 
-## Run Application
+An application which helps to manage books.
 
-1. Create `.env` file, see [.env.example](.env.example).
-2. Run the following command to build and start containers:
+## Running
+
+The easiest way to run application is using Docker.
+
+**Prerequisites**:
+
+- [Docker](https://www.docker.com)
+- Configuration file `.env` (see: [.env.example](.env.example))
 
 ```shell
 docker-compose up
 ```
 
-Application should be available at [localhost on port 8080](http://localhost:8080).
+Application should be available on port `8080`.
